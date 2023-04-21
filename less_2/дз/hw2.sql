@@ -1,6 +1,35 @@
-DROP DATABASE IF EXISTS lesson_2;
 CREATE DATABASE lesson_2;
 USE lesson_2;
+CREATE TABLE sales 
+(id int PRIMARY KEY auto_increment,
+order_date DATE,
+count_product int
+);
+insert sales (id, order_date, count_product)
+values 
+(1,  "2022-01-01", 156),
+(2,  "2022-01-02", 180),
+(3,  "2022-01-03", 19),
+(4,  "2022-01-01", 124),
+(5,  "2022-01-01", 341);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 -- фильмы
 DROP TABLE IF EXISTS movies;
