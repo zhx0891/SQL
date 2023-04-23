@@ -1,0 +1,11 @@
+/*  многострочный 
+комментарий */
+DROP database IF EXISTS new_db;
+create database new_db; -- однострочный комментарий
+show databases;  # однострочный комментарий
+use new_db;
+DROP TABLE IF EXISTS new_table;
+create table new_table (
+column1 column_type column_type2,
+column2
+);
