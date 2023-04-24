@@ -172,7 +172,48 @@ SELECT status, amount, count_order, manufacter,-- Перед "IF" тоже ст�
     IF(amount * count_order >= 3000, 'Cтраховка включена в стоимость', 'Страховка оплачивается отдельно') AS info_message
 FROM Orders;
 
+#Сортировка
 
+SELECT * FROM products ORDER BY id; -- Запрос сортирует результат выборки по полю id
+
+-- Чтобы отсортировать таблицу по каталогам, 
+-- в рамках каждого каталога, по цене, мы можем указать
+-- после ключевого слова ORDER BY сначала поле catalog_id, а затем поле price:
+
+SELECT id, catalog_id, price, name FROM products ORDER BY catalog_id, price;
+
+#LIMIT
+
+-- вернёт две позиции из products отсортированные по name
+SELECT * FROM products
+ORDER BY name
+LIMIT 2;
+
+-- вернёт две позиции из products отсортированные по name, начиная с позиции 1
+SELECT * FROM products
+ORDER BY name
+LIMIT 1, 2; -- альтернативня форма записи LIMIT 2 OFFSET 1;
+
+-- Уникальные значения
+SELECT DISTINCT catalog_id FROM products ORDER BY catalog_id; 
+-- Группировка данных через GROUP BY
+SELECT catalog_id FROM products GROUP BY catalog_id;
+
+
+-- здесь получаем первые три цифры из birthday_at таблицы users и выводим их как псевдоним decade
+ отсортированныепо decade 
+SELECT 
+	id, name, 
+	SUBSTRING(birthday_at, 1, 3) AS decade -- substring возвращает подстроку из birthday_at
+	с 1 позиции длинной 3 символа
+FROM users
+ORDER BY decade;
+
+#этот код подсчитает сколько совпадений в значениях подстроки и выведет их сгруппировав 
+SELECT COUNT(*), 
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade;
 
 
 
