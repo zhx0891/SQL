@@ -215,6 +215,101 @@ SELECT COUNT(*),
 FROM users
 GROUP BY decade;
 
+-- Выберем группы людей (рожденных в 80, 90,2000х),где количество людей больше, чем 2 человека:
+SELECT
+	COUNT(*) AS total,
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade
+HAVING total >= 2;
+
+SELECT * FROM products ORDER BY id; -- Запрос сортирует результат выборки по полю id
+
+-- Чтобы отсортировать таблицу по каталогам, 
+-- в рамках каждого каталога, по цене, мы можем указать
+-- после ключевого слова ORDER BY сначала поле catalog_id, а затем поле price:
+
+SELECT id, catalog_id, price, name FROM products ORDER BY catalog_id desc , price ;
+
+SELECT * FROM products
+ORDER BY name
+LIMIT 2 OFFSET 1;
+
+
+SELECT DISTINCT catalog_id FROM products ORDER BY catalog_id;
+SELECT catalog_id FROM products GROUP BY catalog_id;
+
+SELECT 
+	id, name, 
+	SUBSTRING(birthday_at, 1, 3) AS decade 
+FROM users
+order BY decade;
+
+SELECT COUNT(*), 
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade;
+
+SELECT
+	COUNT(*) AS total,
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade
+ORDER BY total DESC;
+
+
+SELECT
+	GROUP_CONCAT(name),
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade;
+
+SELECT
+	GROUP_CONCAT(name SEPARATOR '|'),
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade;
+
+
+SELECT
+	GROUP_CONCAT(name ORDER BY name desc  SEPARATOR ' * '),
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade;
+
+SELECT COUNT(*) FROM products; -- Количество строк в таблице
+
+SELECT 
+	catalog_id, 
+	COUNT(*) AS total -- считает все  строки в талблице products присваивает псевдоним total
+FROM products 
+GROUP BY catalog_id; -- группирует по каталогам
+
+-- Выберем группы людей (рожденных в 80, 90,2000х),где количество людей больше, чем 2 человека:
+SELECT
+	COUNT(*) AS total,
+	SUBSTRING(birthday_at, 1, 3) AS decade
+FROM users
+GROUP BY decade
+HAVING total >= 2;
+
+-- Функции `MIN()` и `MAX()` возвращают минимальное и максимальное значения столбца.
+SELECT
+	MIN(price) AS min,
+	MAX(price) AS max
+FROM products;
+
+
+
+SELECT 
+	AVG(price) AS "Средняя цена через AVG",
+  	SUM(price) AS "Сумма товаров через SUM",
+  	COUNT(price) AS "Количество всех товаров через COUNT",
+	SUM(price) / COUNT(price)  AS "Проверка ср. арифм"
+FROM products;
+
+
+
 
 
 
